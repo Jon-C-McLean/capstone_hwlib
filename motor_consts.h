@@ -10,32 +10,49 @@
 #ifndef MOTOR_CONSTS_H_
 #define MOTOR_CONSTS_H_
 
-#define AK80_64_P_MIN -12.5
-#define AK80_64_P_MAX 12.5
-#define AK80_64_V_MIN -8.0
-#define AK80_64_V_MAX 8.0
-#define AK80_64_T_MIN -144.0
-#define AK80_64_T_MAX 144.0
-#define AK80_64_KP_MIN 0.0
-#define AK80_64_KP_MAX 500.0
-#define AK80_64_KD_MIN 0.0
-#define AK80_64_KD_MAX 5.0
-#define AK80_64_KT 0.119
-#define AK80_64_RATIO 6.0
-#define AK80_64_DIRECTION 1
+typedef struct {
+    float posMax;
+    float posMin;
+    float velMax;
+    float velMin;
+    float torqueMax;
+    float torqueMin;
+    float kpMax;
+    float kpMin;
+    float kdMax;
+    float kdMin;
+    float kt;
+    float ratio;
+} motor_params_t;
 
-#define AK10_9_P_MIN -12.5
-#define AK10_9_P_MAX 12.5
-#define AK10_9_V_MIN -50.0
-#define AK10_9_V_MAX 50.0
-#define AK10_9_T_MIN -65.0
-#define AK10_9_T_MAX 65.0
-#define AK10_9_KP_MIN 0.0
-#define AK10_9_KP_MAX 500.0
-#define AK10_9_KD_MIN 0.0
-#define AK10_9_KD_MAX 5.0
-#define AK10_9_KT 0.16
-#define AK10_9_RATIO 9.0
-#define AK10_9_DIRECTION 1
+static const motor_params_t AK80_64_Params = {
+    .posMax = 12.5,
+    .posMin = -12.5,
+    .velMax = 8.0,
+    .velMin = -8.0,
+    .torqueMax = 144.0,
+    .torqueMin = -144.0,
+    .kpMax = 500.0,
+    .kpMin = 0.0,
+    .kdMax = 5.0,
+    .kdMin = 0.0,
+    .kt = 0.119,
+    .ratio = 6.0,
+};
+
+static const motor_params_t AK10_9_Params = {
+    .posMax = 12.5,
+    .posMin = -12.5,
+    .velMax = 50.0,
+    .velMin = -50.0,
+    .torqueMax = 65.0,
+    .torqueMin = -65.0,
+    .kpMax = 500.0,
+    .kpMin = 0.0,
+    .kdMax = 5.0,
+    .kdMin = 0.0,
+    .kt = 0.16,
+    .ratio = 9.0,
+};
 
 #endif
