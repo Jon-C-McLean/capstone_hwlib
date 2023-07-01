@@ -16,7 +16,10 @@
 
 typedef struct {
     struct {
-        uint32_t id: 11; // Standard Frame ID
+        uint32_t id; 
+        uint8_t rtr;
+        uint8_t format;
+        uint8_t dlc;
     };
     union {
         struct {

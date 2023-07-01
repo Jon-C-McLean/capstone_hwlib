@@ -30,16 +30,12 @@ typedef struct {
     float torque;
     float kp;
     float kd;
-    motor_type_t motor;
-    uint8_t motorId;
 } motor_pid_t;
 
 typedef struct {
     float pos;
     float vel;
     float torque;
-    motor_type_t motor;
-    uint8_t motorId;
 } motor_feedback_t;
 
 
@@ -48,10 +44,11 @@ typedef struct {
 /**
  * @brief Creates a CAN message for the specified motor using MIT control
  * 
+ * @param motor Motor that the message is for
  * @param pid MIT control values
  * @param frame Output CAN frame
  */
-void create_motor_mit_frame(motor_pid_t *pid, can_message_t *frame);
+void create_motor_mit_frame(motor_t *motor, motor_pid_t *pid, can_message_t *frame);
 
 /**
  * @brief Parses the provided CAN message into positional feedback
@@ -59,6 +56,6 @@ void create_motor_mit_frame(motor_pid_t *pid, can_message_t *frame);
  * @param frame Provided motor CAN frame
  * @param feedback Parsed feedback
  */
-void parse_motor_feedback_frame(can_message_t *frame, motor_feedback_t *feedback);
+void parse_motor_feedback_frame(motor_t *motor, can_message_t *frame, motor_feedback_t *feedback);
 
 #endif
