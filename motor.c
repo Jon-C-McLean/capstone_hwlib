@@ -66,3 +66,23 @@ void create_motor_mit_frame(motor_t *motor, motor_pid_t *pid, can_message_t *fra
     frame->dataByte6 = ((unsignedKd & 0xF) << 4)|(unsignedTorque >> 8);
     frame->dataByte7 = (unsignedTorque & 0xFF);
 }
+
+void parse_motor_feedback_frame(motor_t *motor, can_message_t *frame, motor_feedback_t *feedback) {
+    motor_params_t *params;
+
+    switch(motor->type) {
+        case MOTOR_AK80_64:
+            params = &AK80_64_Params;
+        case MOTOR_AK10_9:
+        default:
+            params = &AK80_64_Params;
+    };
+
+    uint16_t pos = (frame->dataByte1 << 8) | frame->dataByte2;
+    uint16_t vel = (frame->dataByte3 << 4) | (frame->dataByte4 >> 4);
+    uint16_t torque = (frame->dataByte4 & 0xF) | frame->dataByte5;
+
+    feedback->pos = uint_to_float(pos, params->posMin, params->posMax, 16);
+    feedback->vel = uint_to_float(vel, params->velMin, params->velMax, 12);
+    feedback->torque = uint_to_float(torque, params->torqueMin, params->torqueMax, 12);
+}
