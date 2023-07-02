@@ -1,1 +1,2 @@
-hwlib
+# HWLIB
+This is the hardware library for my capstone project. The hardware library is responsible for providing an abstraction layer to interact with hardware directly. For example this repo provides some functions to generate CAN frames for MIT motor control of the elbow and shoulder motors. 
