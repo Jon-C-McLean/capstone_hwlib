@@ -12,7 +12,6 @@
 
 void canio_create_interface(can_interface_t* interface, uint8_t busNumber, can_bus_type busType, uint32_t bitrate) {
     assert(interface != NULL && "Interface pointer cannot be NULL");
-    printf("wtf");
     char* busName;
 
     switch(busType) {
