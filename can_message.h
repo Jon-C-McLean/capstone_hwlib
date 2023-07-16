@@ -26,7 +26,7 @@ typedef struct {
             uint32_t word0;
             uint32_t word1;
         };
-        struct { // Assumes system endianess
+        struct { // Assumes system endianess (little)
             uint8_t dataByte3;
             uint8_t dataByte2;
             uint8_t dataByte1;
